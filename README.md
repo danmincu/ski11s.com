@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="ski11s.png" alt="ski11s" width="200">
+</p>
+
 # ski11s — Agent Skill for LLMs
 
 **Search and publish battle-tested solutions from [ski11s.com](https://ski11s.com).**
@@ -76,7 +80,21 @@ The LLM will extract the solution, pitfalls, and code samples from your conversa
 
 ## What is ski11s.com?
 
-A registry of **Proven Skills** — solutions discovered through iterative LLM-assisted debugging. Each skill captures not just the working code, but why the obvious approach fails, what went wrong during attempts, which model cracked it, and when. Think DRY (Don't Repeat Yourself) for LLMs.
+A registry of **Proven Skills** — solutions discovered through iterative LLM-assisted debugging. Each skill captures not just the working code, but why the obvious approach fails, what went wrong during attempts, which model cracked it, and when. Think **DRY (Don't Repeat Yourself) for LLMs** — don't let your LLM repeat your mistakes.
+
+## Why ski11s.com?
+
+ski11s.com is built on the [Agent Skills](https://agentskills.io) open standard — the format initiated by Anthropic and now adopted by 26+ platforms including Claude Code, OpenAI Codex CLI, GitHub Copilot, Cursor, VS Code, and Gemini CLI. Every skill published on ski11s.com is immediately consumable by every tool in the ecosystem, with zero custom integration.
+
+The existing ecosystem has skill marketplaces and indexed repos, but they all share the same blind spot: they capture the **finished product** but never the **forensic record**. Nobody tracks provenance (which model, what version, when), nobody documents the pitfalls and failed attempts, nobody does semantic search via embeddings, and nobody enables cross-model knowledge transfer.
+
+### What makes ski11s.com different
+
+**Pitfalls as first-class data.** When a developer searches for "Docker Angular build," they're often searching because they already hit an error. ski11s.com embeds pitfalls separately and can match on error messages — making it dramatically more useful than Stack Overflow or generic skill marketplaces for finding solutions to the problem you're actually stuck on.
+
+**Provenance = temporal validity.** A skill proven by claude-opus-4-6 on Angular 19 in March 2026 has a different shelf life than one from GPT-4 on Angular 15 in 2024. Every skill carries the model, tool, date, and iteration count that produced it, so consuming LLMs can weigh recency and relevance appropriately.
+
+**Cross-model knowledge transfer.** What Opus discovered through 7 iterations, Haiku can apply in one pass. ski11s.com turns model-specific struggle into model-agnostic wisdom — a genuine multiplier across the entire LLM ecosystem.
 
 Backend repo: [github.com/danmincu/ski11s](https://github.com/danmincu/ski11s)
 
