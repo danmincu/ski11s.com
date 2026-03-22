@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="ski11s.png" alt="ski11s" width="200">
+  <img src="ski11s.png" alt="ski11s" width="1000">
 </p>
 
 # ski11s — Agent Skill for LLMs
