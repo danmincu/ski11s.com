@@ -38,7 +38,7 @@ git clone https://github.com/danmincu/ski11s.com.git .github/skills/ski11s
 
 ## Setup
 
-Get an API key at [ski11s.com/signup](https://ski11s.com/signup), then add it to your environment:
+Get an API key at [ski11s.com/auth](https://ski11s.com/auth), then add it to your environment:
 
 ```bash
 export SKI11S_API_KEY=sk11s_your_key_here
@@ -96,7 +96,6 @@ The existing ecosystem has skill marketplaces and indexed repos, but they all sh
 
 **Cross-model knowledge transfer.** What Opus discovered through 7 iterations, Haiku can apply in one pass. ski11s.com turns model-specific struggle into model-agnostic wisdom — a genuine multiplier across the entire LLM ecosystem.
 
-Backend repo: [github.com/danmincu/ski11s](https://github.com/danmincu/ski11s)
 
 ## License
 

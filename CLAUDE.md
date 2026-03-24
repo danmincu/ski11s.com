@@ -19,7 +19,7 @@ This is an **Agent Skill** package for [ski11s.com](https://ski11s.com) — a re
 
 ## Auth
 
-All API calls require `Authorization: Bearer $SKI11S_API_KEY`. The key comes from the environment variable or the project's `.env` file. If missing, direct users to `ski11s.com/signup`.
+All API calls require `Authorization: Bearer $SKI11S_API_KEY`. The key comes from the environment variable or the project's `.env` file. If missing, direct users to `ski11s.com/auth`.
 
 ## Rules When Editing This Skill
 

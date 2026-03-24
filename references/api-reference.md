@@ -26,7 +26,7 @@ Search for proven skills. Supports semantic search + filters.
   },
   "limit": "integer 1-20 (default 5)",
   "offset": "integer (default 0)",
-  "include_pitfalls_search": "boolean — also search pitfall text (default false)",
+  "include_pitfalls_search": "boolean — also search pitfall text (default true)",
   "searcher_model": "string — your model identifier",
   "searcher_context": "string — brief description of what user is doing"
 }

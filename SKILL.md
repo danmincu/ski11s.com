@@ -21,7 +21,7 @@ what went wrong, and the model/date that cracked it.
 
 The user's API key must be available as environment variable `SKI11S_API_KEY`
 or in the project's `.env` file. If not found, direct the user to
-https://ski11s.com/signup to get one.
+https://ski11s.com/auth to get one.
 
 Base URL: `https://api.ski11s.com/v1`
 
