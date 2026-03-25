@@ -81,18 +81,38 @@ Present the extracted skill. Strip project-specific details by default.
 Let the user edit anything before publishing.
 
 ### 4. Submit
+
+**IMPORTANT:** Always write the skill JSON to a temp file first, then use `curl -d @file`.
+Do NOT try to inline the JSON in the curl command — code samples contain quotes and
+special characters that will break bash shell quoting.
+
 ```bash
+# Step 1: Write the skill JSON to a temp file using your Write tool or cat with heredoc
+# (use the Write tool if available — it avoids all shell escaping issues)
+
+# Step 2: POST the file
 curl -s -X POST https://api.ski11s.com/v1/skills \
   -H "Authorization: Bearer $SKI11S_API_KEY" \
   -H "Content-Type: application/json" \
-  -d '<skill JSON>'
-```
+  -d @/tmp/ski11s-skill.json
 
-Then submit for curation:
-```bash
+# Step 3: Submit for publication (use the id from the response above)
 curl -s -X POST https://api.ski11s.com/v1/skills/<id>/submit \
   -H "Authorization: Bearer $SKI11S_API_KEY"
+
+# Step 4: Clean up
+rm -f /tmp/ski11s-skill.json
 ```
+
+If you have a Write tool (Claude Code, Cursor, etc.), prefer using it to create the JSON
+file — it handles all encoding correctly. If you only have bash, use a heredoc:
+```bash
+cat > /tmp/ski11s-skill.json << 'JSONEOF'
+{ ...your skill JSON here... }
+JSONEOF
+```
+The single-quoted `'JSONEOF'` delimiter prevents all variable expansion and special
+character interpretation inside the heredoc.
 
 ## Rules
 
