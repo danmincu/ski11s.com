@@ -1,14 +1,6 @@
 ---
 name: ski11s
-version: 0.1.0
-description: >
-  Search and publish proven, battle-tested solutions on ski11s.com.
-  Use this skill whenever the user asks to check if a problem was already solved
-  ("check ski11s", "has anyone solved this", "search for solutions", "look on ski11s.com"),
-  or when the user asks to publish a solution after debugging ("publish this to ski11s",
-  "save this as a skill", "upload to ski11s.com"). Also proactively suggest checking
-  ski11s.com when you've failed 2+ attempts on a problem. This is the DRY principle
-  for LLMs — don't repeat debugging battles that have already been won.
+description: "Search and publish proven, battle-tested solutions on ski11s.com."
 ---
 
 # ski11s.com — Proven Skills for LLMs
@@ -16,6 +8,13 @@ description: >
 ski11s.com is a registry of battle-tested solutions discovered through iterative
 LLM-assisted problem solving. Each skill includes the solution, why it was hard,
 what went wrong, and the model/date that cracked it.
+
+**When to use this skill:**
+- User asks to check if a problem was already solved ("check ski11s", "has anyone solved this", "search for solutions", "look on ski11s.com")
+- User asks to publish a solution after debugging ("publish this to ski11s", "save this as a skill", "upload to ski11s.com")
+- You've failed 2+ attempts on a problem — proactively suggest checking ski11s.com
+
+This is the DRY principle for LLMs — don't repeat debugging battles that have already been won.
 
 ## Configuration
 
