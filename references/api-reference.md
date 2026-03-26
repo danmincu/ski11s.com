@@ -56,9 +56,25 @@ Create a new skill (draft status).
 
 Submit a draft for curation review.
 
-### PUT /v1/skills/{id}
+### GET /v1/skills/mine
 
-Update a skill (creates new version).
+List the authenticated user's own skills. Requires auth.
+
+**Query params:** `?status=published` (optional — filter by draft, published, deprecated)
+
+**Response:** `{ skills: [{ id, slug, title, description, status, version, confidence_score, usage_count, upvotes, created_at, updated_at, published_at }], total: int }`
+
+### PUT /v1/skills/{id_or_slug}
+
+Update a skill (creates new version). Only the skill owner can update, unless the user has the `update-others-skills` role. Send only the fields that changed.
+
+**Body:** Any subset of the Skill Schema fields below, plus optional `change_notes` (string).
+
+**Response:** Full SkillDetail with bumped version number.
+
+### DELETE /v1/skills/{id_or_slug}
+
+Permanently delete a skill you own. Returns 204 on success, 403 if not the owner.
 
 ### POST /v1/skills/{id}/deprecate
 

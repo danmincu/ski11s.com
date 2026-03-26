@@ -12,6 +12,9 @@ what went wrong, and the model/date that cracked it.
 **When to use this skill:**
 - User asks to check if a problem was already solved ("check ski11s", "has anyone solved this", "search for solutions", "look on ski11s.com")
 - User asks to publish a solution after debugging ("publish this to ski11s", "save this as a skill", "upload to ski11s.com")
+- User asks to update an existing skill ("update my skill on ski11s", "fix my published skill", "edit my skill")
+- User asks to list their skills ("list my skills on ski11s", "show my published skills", "what have I published")
+- User asks to delete a skill ("delete my skill on ski11s", "remove my skill")
 - You've failed 2+ attempts on a problem — proactively suggest checking ski11s.com
 
 This is the DRY principle for LLMs — don't repeat debugging battles that have already been won.
@@ -113,6 +116,81 @@ JSONEOF
 ```
 The single-quoted `'JSONEOF'` delimiter prevents all variable expansion and special
 character interpretation inside the heredoc.
+
+## Listing Your Skills
+
+When the user asks to see their published skills:
+
+```bash
+curl -s https://api.ski11s.com/v1/skills/mine \
+  -H "Authorization: Bearer $SKI11S_API_KEY"
+```
+
+Optional: filter by status with `?status=published`, `?status=draft`, or `?status=deprecated`.
+
+Present a numbered list with title, status, slug, and last updated date.
+If the user wants to update or delete one, ask which by number.
+
+## Updating an Existing Skill
+
+When the user asks to update a skill they previously published:
+
+### 1. Identify the skill
+If the user specifies a title or slug, use it directly. Otherwise:
+1. Call `GET /v1/skills/mine` to list their skills
+2. Present the list and ask which skill to update
+3. Call `GET /v1/skills/{id_or_slug}` to fetch the current version
+
+### 2. Determine what changed
+Compare the current skill content with what the user wants to change.
+Only include fields that actually changed in the update payload.
+
+### 3. Review with user
+Present the changes before submitting.
+
+### 4. Submit the update
+
+**IMPORTANT:** Always write the update JSON to a temp file first, then use `curl -d @file`.
+
+```bash
+# Step 1: Write the update JSON to a temp file
+# Only include fields that changed + optional change_notes
+
+# Step 2: PUT the file
+curl -s -X PUT https://api.ski11s.com/v1/skills/<id_or_slug> \
+  -H "Authorization: Bearer $SKI11S_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d @/tmp/ski11s-update.json
+
+# Step 3: Clean up
+rm -f /tmp/ski11s-update.json
+```
+
+The `change_notes` field is optional but recommended — it's stored in version history.
+The API will bump the version number automatically and preserve the previous version.
+
+## Deleting a Skill
+
+When the user asks to delete a skill they own:
+
+### 1. Identify the skill
+Same as updating — list and confirm which skill.
+
+### 2. Always confirm first
+"Are you sure you want to permanently delete '<skill title>'? This cannot be undone."
+
+If the skill has `usage_count > 0`, suggest deprecation instead:
+"This skill has been used by N people. Would you prefer to deprecate it instead
+so existing references don't break?"
+
+### 3. Delete
+
+```bash
+curl -s -X DELETE https://api.ski11s.com/v1/skills/<id_or_slug> \
+  -H "Authorization: Bearer $SKI11S_API_KEY"
+```
+
+A 204 response means success. Confirm to the user that the skill was deleted.
 
 ## Rules
 
